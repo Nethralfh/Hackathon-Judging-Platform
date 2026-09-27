@@ -1,0 +1,19 @@
+[portal]
+base_url = "http://localhost:8080"
+
+[tiers]
+claimed = ["T1", "T2"]
+pitch = "Clean architecture."
+
+[auth]
+organizer   = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6Im9yZ2FuaXplciJ9.iex4_j7IattjbM9iRUGzMxOGk0JMr-2stR6cTcjRkf4"
+judge_a     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6ImpkZ18wMSJ9.9xO69wh7B7Cfj3d8RE3agRGkUy7OL25FAMoHXQWD4KY"
+judge_b     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6ImpkZ18wMiJ9.xi3NBgYP3gLqKCXrxYbThgfWigbDVEk_DQt7Lxink8A"
+participant = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6InByaXlhMTEifQ.uNEtD1uwJM9bF0ANSDcqkkSmOC7Go6x9RmMbRHmAOos"
+
+[routes]
+gallery      = "/api/v1/public/projects"
+submit       = "/api/v1/projects"
+judge_scores = "/api/v1/judging/scores"
+peer_scores  = "/api/v1/judging/scores?judge_id=2"
+csv_export   = "/api/v1/results/export"
