@@ -1,0 +1,4 @@
+# Acceptance Report
+
+<!-- This file is intentionally left as a placeholder. -->
+<!-- Test results and acceptance criteria outcomes will be recorded here. -->
