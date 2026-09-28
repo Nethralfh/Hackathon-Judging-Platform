@@ -98,34 +98,29 @@
       </a>
 
       {# Nav Links #}
-      <nav class="flex items-center gap-1 sm:gap-2 text-sm">
-        <a href="/projects" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/projects' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
+      <nav class="flex items-center gap-1 sm:gap-1.5 text-sm overflow-x-auto py-1">
+        <a href="/projects" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/projects' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
           Gallery
         </a>
 
-        {% if current_user and current_user.role == 'participant' %}
-          <a href="/projects/new" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 {{ 'bg-lime-400/10 text-lime-400 ring-1 ring-lime-400/30' if current_path == '/projects/new' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-            Submit Project
-          </a>
-        {% endif %}
+        <a href="/projects/new" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/projects/new' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
+          Submit Project
+        </a>
 
-        {% if current_user and current_user.role == 'judge' %}
-          <a href="/judge/dashboard" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 {{ 'bg-lime-400/10 text-lime-400 ring-1 ring-lime-400/30' if current_path == '/judge/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-            Scoring Queue
-          </a>
-        {% endif %}
+        <a href="/judge/dashboard" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/judge/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
+          Scoring Queue
+        </a>
 
-        {% if current_user and current_user.role == 'organizer' %}
-          <a href="/organizer/dashboard" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/organizer/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-            Dashboard
-          </a>
-          <a href="/api/v1/results/export" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-400 hover:text-white hover:bg-white/[0.04] transition-colors">
-            Export CSV
-          </a>
-        {% endif %}
+        <a href="/organizer/dashboard" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/organizer/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
+          Organizer
+        </a>
+
+        <a href="/api/v1/results/export" class="hidden lg:inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/[0.04] transition-colors">
+          Export CSV
+        </a>
 
         {# User / Role Status Pill #}
-        <div class="flex items-center gap-2 border-l border-white/10 pl-3 sm:pl-4 ml-1">
+        <div class="flex items-center gap-2 border-l border-white/10 pl-2.5 sm:pl-3 ml-1 shrink-0">
           {% if not current_user %}
             <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 border border-white/10 shadow-sm">
               <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
