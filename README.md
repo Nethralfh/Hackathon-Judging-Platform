@@ -1,34 +1,29 @@
 <div align="center">
 
-# ⚡ DOGFOOD
+<p align="center">
+  <img src="./assets/hero.svg" width="100%" alt="DOGFOOD Hackathon Judging Platform">
+</p>
 
-### HACKATHON JUDGING PLATFORM
+<h3 align="center">
+  Judges evaluate projects.<br>
+  The system protects the evaluation.
+</h3>
 
-**Where evaluation becomes infrastructure.**
-
-<br>
-
-<img src="https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/714/391/datas/original.png" width="900" alt="Hackathon">
-
-<br><br>
-
-### `MANAGE` · `EVALUATE` · `ISOLATE` · `SCORE` · `RANK`
-
-<br>
-
-![Python](https://img.shields.io/badge/Python-3.12+-111111?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-111111?style=for-the-badge&logo=fastapi&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-111111?style=for-the-badge&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Ready-111111?style=for-the-badge&logo=docker&logoColor=white)
-![Pytest](https://img.shields.io/badge/Pytest-Tested-111111?style=for-the-badge&logo=pytest&logoColor=white)
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12+-0D0F0E?style=flat-square&labelColor=0D0F0E&color=B6FF3B">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Backend-0D0F0E?style=flat-square&labelColor=0D0F0E&color=B6FF3B">
+  <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-Database-0D0F0E?style=flat-square&labelColor=0D0F0E&color=B6FF3B">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-Ready-0D0F0E?style=flat-square&labelColor=0D0F0E&color=B6FF3B">
+  <img alt="API Docs" src="https://img.shields.io/badge/API_Docs-%2Fdocs-0D0F0E?style=flat-square&labelColor=0D0F0E&color=B6FF3B">
+</p>
 
 </div>
 
 ---
 
-## 01 — THE THOUGHT
+# DOGFOOD
 
-> **A hackathon is only as fair as the system doing the judging.**
+## Hackathon Judging Platform
 
 Hackathons move fast.
 
@@ -39,113 +34,146 @@ Results have to be trusted.
 
 **DOGFOOD treats judging as infrastructure — not just a form.**
 
-It provides a controlled backend for managing hackathons, teams, projects, judges, evaluations and final results while enforcing access at the system level.
+It creates a controlled evaluation workflow connecting events, teams, projects, judges, scoring and results while keeping protected operations inside the backend.
+
+<p align="center">
+  <img src="./assets/problem-solution.svg" width="900" alt="Traditional judging versus DOGFOOD">
+</p>
 
 ---
 
-<div align="center">
+# THE IDEA
 
-<img src="https://rajeevg.com/images/blog/hackathon-voting-app/hackathon-live-desktop-clean.png" width="850" alt="Hackathon Judging">
+> **Judges evaluate projects. The system protects the evaluation.**
 
-</div>
-
----
-
-# 02 — FROM CHAOS → CONTROL
+The judging lifecycle becomes:
 
 ```text
-┌──────────────────────────────────────────────────────────┐
-│                    TRADITIONAL FLOW                      │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│  Teams → Submissions → Judges → Spreadsheets → Results  │
-│                         │                                │
-│                         ├── Manual coordination          │
-│                         ├── Score visibility             │
-│                         ├── Inconsistent evaluation      │
-│                         └── Result processing            │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-
-
-                           ↓
-
-
-┌──────────────────────────────────────────────────────────┐
-│                         DOGFOOD                          │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│  EVENT → TEAMS → PROJECTS → ASSIGNMENTS → JUDGING       │
-│                                             │            │
-│                                             ▼            │
-│                                      SCORE ENGINE        │
-│                                             │            │
-│                                             ▼            │
-│                                      FINAL RESULTS       │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
+┌─────────────┐
+│    EVENT    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    TEAMS    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   PROJECTS  │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    JUDGE    │
+│ ASSIGNMENT  │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  ISOLATED   │
+│  JUDGING    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    SCORE    │
+│   ENGINE    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   RESULTS   │
+└─────────────┘
 ```
 
-### The principle is simple.
+---
 
-**Judges evaluate projects.**
+# THE PROBLEM
 
-**The system protects the evaluation.**
+Traditional hackathon judging can depend heavily on spreadsheets, shared links and manual coordination.
+
+That creates operational problems around:
+
+- judge assignment
+- score visibility
+- evaluation consistency
+- manual calculations
+- result processing
+- access control
+
+DOGFOOD moves these operations into a structured backend workflow.
+
+<p align="center">
+  <img src="./assets/problem-solution.svg" width="900" alt="From traditional judging to DOGFOOD">
+</p>
 
 ---
 
-# 03 — THE EXPERIENCE
+# THE DOGFOOD APPROACH
 
-<div align="center">
-
-<img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/809/365/datas/original.png" width="900" alt="Hackathon Dashboard">
-
-</div>
-
-<br>
-
-One platform for the complete hackathon evaluation lifecycle.
-
-| Stage | Operation |
-|:---:|:---|
-| `01` | **CREATE** — Configure the hackathon |
-| `02` | **ORGANIZE** — Manage teams and participants |
-| `03` | **SUBMIT** — Collect project submissions |
-| `04` | **DEFINE** — Configure evaluation rubrics |
-| `05` | **ASSIGN** — Allocate projects to judges |
-| `06` | **EVALUATE** — Conduct isolated judging |
-| `07` | **PROCESS** — Calculate and normalize scores |
-| `08` | **PUBLISH** — Generate final results |
-
----
-
-# 04 — THE CORE
-
-## 🔐 JUDGE ISOLATION
-
-### Not hidden. Enforced.
+One controlled path from event to result.
 
 ```text
-                         JUDGING ENGINE
-                               │
-                 ┌─────────────┴─────────────┐
-                 │                           │
-                 ▼                           ▼
-            ┌─────────┐                 ┌─────────┐
-            │ JUDGE A │                 │ JUDGE B │
-            └────┬────┘                 └────┬────┘
-                 │                           │
-          ┌──────┼──────┐             ┌──────┼──────┐
-          ▼      ▼      ▼             ▼      ▼      ▼
-         P01    P04    P07           P02    P05    P08
-          │      │      │             │      │      │
-          ▼      ▼      ▼             ▼      ▼      ▼
-        SCORE  SCORE  SCORE         SCORE  SCORE  SCORE
+EVENT
+  │
+  ▼
+TEAMS
+  │
+  ▼
+PROJECTS
+  │
+  ▼
+RUBRIC
+  │
+  ▼
+JUDGE ASSIGNMENT
+  │
+  ▼
+EVALUATION
+  │
+  ▼
+SCORE PROCESSING
+  │
+  ▼
+RESULTS
 ```
 
-A judge's evaluation belongs to that judge.
+### The backend becomes the trust layer.
 
-The authorization layer validates:
+- Judges access assigned projects through backend authorization.
+- Evaluation data follows a structured workflow.
+- Protected resources are validated server-side.
+- Scoring is handled as application logic rather than spreadsheet arithmetic.
+- Results can be generated from processed evaluation data.
+
+---
+
+# JUDGING ISOLATION
+
+## Not hidden. **Enforced.**
+
+A frontend restriction is not a security boundary.
+
+DOGFOOD treats judge isolation as a backend authorization problem.
+
+<p align="center">
+  <img src="./assets/judging-isolation.svg" width="900" alt="DOGFOOD judge isolation">
+</p>
+
+```text
+                     JUDGING ENGINE
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+             ▼                           ▼
+        ┌─────────┐                 ┌─────────┐
+        │ JUDGE A │                 │ JUDGE B │
+        └────┬────┘                 └────┬────┘
+             │                           │
+       ┌─────┼─────┐               ┌─────┼─────┐
+       ▼     ▼     ▼               ▼     ▼     ▼
+      P01   P04   P07             P02   P05   P08
+       │     │     │               │     │     │
+       ▼     ▼     ▼               ▼     ▼     ▼
+     SCORE SCORE SCORE           SCORE SCORE SCORE
+```
+
+A protected request follows:
 
 ```text
 WHO ARE YOU?
@@ -154,45 +182,98 @@ WHAT IS YOUR ROLE?
       ↓
 WHAT ARE YOU ASSIGNED TO?
       ↓
-ARE YOU ALLOWED TO ACCESS THIS RESOURCE?
+IS THIS RESOURCE ALLOWED?
       ↓
-YES ───────────────→ RESPONSE
-NO  ───────────────→ 403 FORBIDDEN
+ ┌───────────────┐
+ │               │
+ YES             NO
+ │               │
+ ▼               ▼
+ACCESS       403 FORBIDDEN
 ```
 
-This makes authorization part of the **backend architecture**, not merely a frontend restriction.
+**The server decides.**
 
 ---
 
-# 05 — SYSTEM ARCHITECTURE
+# EVALUATION ENGINE
+
+Every evaluation follows a controlled scoring path.
+
+<p align="center">
+  <img src="./assets/scoring-engine.svg" width="900" alt="DOGFOOD scoring engine">
+</p>
 
 ```text
-                         ┌───────────────────┐
-                         │     FRONTEND      │
-                         └─────────┬─────────┘
-                                   │
+┌───────────────┐
+│   CRITERIA    │
+└───────┬───────┘
+        ↓
+┌───────────────┐
+│    WEIGHTS    │
+└───────┬───────┘
+        ↓
+┌───────────────┐
+│ INDIVIDUAL    │
+│    SCORES     │
+└───────┬───────┘
+        ↓
+┌───────────────┐
+│   WEIGHTED    │
+│    SCORE      │
+└───────┬───────┘
+        ↓
+┌───────────────┐
+│ NORMALIZATION │
+└───────┬───────┘
+        ↓
+┌───────────────┐
+│ FINAL SCORE   │
+└───────────────┘
+```
+
+The objective is simple:
+
+**Every score should have a controlled path.**
+
+---
+
+# SYSTEM ARCHITECTURE
+
+DOGFOOD separates the presentation layer from backend-owned business logic.
+
+<p align="center">
+  <img src="./assets/architecture.svg" width="950" alt="DOGFOOD system architecture">
+</p>
+
+```text
+                         ┌──────────────────┐
+                         │     FRONTEND     │
+                         └────────┬─────────┘
+                                  │
                               REST / HTTP
-                                   │
-                                   ▼
-                  ┌────────────────────────────────┐
-                  │            FASTAPI              │
-                  ├────────────────────────────────┤
-                  │ Authentication                 │
-                  │ Authorization                  │
-                  │ Event Management               │
-                  │ Team Management                │
-                  │ Project Submissions            │
-                  │ Judge Assignment               │
-                  │ Evaluation                      │
-                  │ Score Processing                │
-                  │ Results                         │
-                  └───────────────┬────────────────┘
                                   │
                                   ▼
-                       ┌────────────────────┐
-                       │      DATABASE      │
-                       │     PostgreSQL     │
-                       └────────────────────┘
+                    ┌───────────────────────────┐
+                    │          FASTAPI          │
+                    ├───────────────────────────┤
+                    │                           │
+                    │ Authentication            │
+                    │ Authorization             │
+                    │ Events                    │
+                    │ Teams                     │
+                    │ Projects                  │
+                    │ Judge Assignment          │
+                    │ Evaluation                │
+                    │ Score Processing          │
+                    │ Results                   │
+                    │                           │
+                    └─────────────┬─────────────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │   PostgreSQL    │
+                         └─────────────────┘
 ```
 
 ### Request lifecycle
@@ -221,340 +302,291 @@ RESPONSE
 
 ---
 
-# 06 — WHAT'S INSIDE
+# SECURITY FLOW
 
-<table>
-<tr>
-<td width="50%">
+Protected requests pass through identity, role and resource checks before business logic.
 
-### 🔑 AUTHENTICATION
+<p align="center">
+  <img src="./assets/security-flow.svg" width="900" alt="DOGFOOD security flow">
+</p>
 
-JWT-based authentication with controlled access to protected resources.
+```text
+                 ┌─────────────┐
+                 │   REQUEST   │
+                 └──────┬──────┘
+                        ↓
+              ┌──────────────────┐
+              │ JWT VERIFICATION │
+              └────────┬─────────┘
+                       ↓
+              ┌──────────────────┐
+              │    ROLE CHECK    │
+              └────────┬─────────┘
+                       ↓
+              ┌──────────────────┐
+              │ RESOURCE CHECK   │
+              └────────┬─────────┘
+                       ↓
+              ┌──────────────────┐
+              │    VALIDATION    │
+              └────────┬─────────┘
+                       ↓
+              ┌──────────────────┐
+              │  BUSINESS LOGIC │
+              └────────┬─────────┘
+                       ↓
+              ┌──────────────────┐
+              │     DATABASE     │
+              └────────┬─────────┘
+                       ↓
+                   RESPONSE
+```
 
-</td>
-
-<td width="50%">
-
-### 🏟️ EVENT MANAGEMENT
-
-Create and manage complete hackathon lifecycles.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-### 👥 TEAM MANAGEMENT
-
-Participants, teams and membership workflows.
-
-</td>
-
-<td>
-
-### 📦 PROJECT SUBMISSIONS
-
-Structured project information and submission lifecycle.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-### ⚖️ JUDGING ENGINE
-
-Rubric-based evaluation with controlled access.
-
-</td>
-
-<td>
-
-### 🔒 JUDGE ISOLATION
-
-Backend-enforced separation of evaluations.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-### 📊 SCORE ENGINE
-
-Weighted scoring and result processing.
-
-</td>
-
-<td>
-
-### 🏆 RESULT ENGINE
-
-Generate validated final rankings.
-
-</td>
-</tr>
-</table>
+Unauthorized access should terminate at the authorization layer rather than depending on frontend behaviour.
 
 ---
 
-# 07 — API SURFACE
+# FEATURES
 
-<div align="center">
+| MODULE | PURPOSE |
+|:---|:---|
+| 🔑 **Authentication** | JWT-based user authentication |
+| 🛡️ **Authorization** | Role and resource-level access checks |
+| 🏟️ **Events** | Create and manage hackathon events |
+| 👥 **Teams** | Manage participants and teams |
+| 📦 **Projects** | Handle project information and submissions |
+| ⚖️ **Judge Assignment** | Connect judges with assigned projects |
+| 📝 **Judging** | Record structured project evaluations |
+| 📊 **Scoring** | Process evaluation scores |
+| 📚 **API Documentation** | Interactive OpenAPI documentation |
 
-### REST API
+---
 
-`/api/v1`
+# COMPLETE EVALUATION LIFECYCLE
 
-</div>
+From submission to result.
+
+<p align="center">
+  <img src="./assets/evaluation-flow.svg" width="950" alt="DOGFOOD evaluation lifecycle">
+</p>
 
 ```text
-AUTHENTICATION
-│
-├── POST   /auth/register
-├── POST   /auth/login
-└── GET    /auth/me
-
-
-EVENTS
-│
-├── POST   /events
-├── GET    /events
-└── GET    /events/{event_id}
-
-
-TEAMS
-│
-├── POST   /teams
-├── GET    /teams/{team_id}
-└── POST   /teams/{team_id}/members
-
-
-PROJECTS
-│
-├── POST   /projects
-├── GET    /projects
-├── GET    /projects/{project_id}
-└── POST   /projects/{project_id}/submit
-
-
-JUDGING
-│
-├── POST   /judges/assignments
-├── GET    /judges/assignments
-└── POST   /judging/scores
-
-
-RESULTS
-│
-├── GET    /results
-├── GET    /results/{project_id}
-└── GET    /results/export
+01  EVENT
+     ↓
+02  TEAMS
+     ↓
+03  PROJECTS
+     ↓
+04  RUBRIC
+     ↓
+05  JUDGE ASSIGNMENT
+     ↓
+06  EVALUATION
+     ↓
+07  SCORE VALIDATION
+     ↓
+08  NORMALIZATION
+     ↓
+09  RANKING
+     ↓
+10  FINAL RESULTS
 ```
 
 ---
 
-# 08 — SECURITY MODEL
+# RESULTS ENGINE
 
-<div align="center">
-
-<img src="https://i.imgur.com/82fX4GI.png" width="850" alt="Judging Scorecard">
-
-</div>
+Scores enter the processing layer.
 
 ```text
-                     ┌─────────────┐
-                     │   REQUEST   │
-                     └──────┬──────┘
-                            │
-                            ▼
-                  ┌──────────────────┐
-                  │ JWT VERIFICATION │
-                  └────────┬─────────┘
-                           │
-                           ▼
-                  ┌──────────────────┐
-                  │   ROLE CHECK     │
-                  └────────┬─────────┘
-                           │
-                           ▼
-                  ┌──────────────────┐
-                  │ RESOURCE CHECK   │
-                  └────────┬─────────┘
-                           │
-                 ┌─────────┴─────────┐
-                 ▼                   ▼
-             AUTHORIZED          DENIED
-                 │                   │
-                 ▼                   ▼
-              RESPONSE          403 / 401
+PROJECT SCORES
+      │
+      ▼
+SCORE AGGREGATION
+      │
+      ▼
+NORMALIZATION
+      │
+      ▼
+RANKING
+      │
+      ▼
+FINAL RESULTS
 ```
 
-### Security philosophy
+<p align="center">
+  <img src="./assets/results-engine.svg" width="900" alt="DOGFOOD result processing engine">
+</p>
 
-```text
-Frontend protection       → UX
-Backend authorization     → SECURITY
-Database constraints      → INTEGRITY
-Validation                → SAFETY
-```
+The result pipeline is designed to make score processing structured and traceable.
 
 ---
 
-# 09 — TECH STACK
+# API
 
-<div align="center">
+DOGFOOD exposes an interactive backend API.
 
-<img src="https://skillicons.dev/icons?i=python,fastapi,postgres,docker,git,github" width="520">
-
-</div>
-
-<br>
-
-```text
-LANGUAGE        Python 3.12+
-
-BACKEND         FastAPI
-
-DATABASE        PostgreSQL
-
-ORM             SQLAlchemy
-
-VALIDATION      Pydantic
-
-AUTHENTICATION  JWT
-
-MIGRATIONS      Alembic
-
-TESTING         Pytest
-
-CONTAINER       Docker
-
-VERSIONING      Git / GitHub
-```
-
----
-
-# 10 — PROJECT STRUCTURE
-
-```text
-Hackathon-Judging-Platform/
-│
-├── frontend/
-│
-├── backend/
-│   │
-│   ├── app/
-│   │   ├── api/
-│   │   ├── core/
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   └── services/
-│   │
-│   ├── tests/
-│   │
-│   ├── alembic/
-│   │
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   └── requirements.txt
-│
-├── README.md
-│
-└── .gitignore
-```
-
----
-
-# 11 — QUALITY GATE
-
-DOGFOOD is designed around testable backend behaviour.
-
-```text
-✓ Authentication
-✓ Authorization
-✓ Event Lifecycle
-✓ Team Management
-✓ Submission Validation
-✓ Judge Assignment
-✓ Judge Isolation
-✓ Weighted Evaluation
-✓ Score Processing
-✓ Result Generation
-✓ Export
-```
-
-### Critical scenario
-
-```text
-┌──────────────┐
-│   JUDGE A    │
-└──────┬───────┘
-       │
-       │ tries to access
-       │ Judge B's score
-       ▼
-┌──────────────────────┐
-│   AUTHORIZATION      │
-│       LAYER          │
-└──────────┬───────────┘
-           │
-           ▼
-      ┌──────────┐
-      │   403    │
-      │ FORBIDDEN│
-      └──────────┘
-```
-
----
-
-# 12 — LIVE API
-
-Once the backend is running:
+### Base URL
 
 ```text
 http://localhost:8000
 ```
 
-Interactive API documentation:
+### Interactive documentation
 
 ```text
 http://localhost:8000/docs
 ```
 
-<div align="center">
+The `/docs` interface provides the available API operations, request schemas and response structures.
 
-### API FIRST.  
-### DOCUMENTED.  
-### TESTABLE.
+### API areas
 
-</div>
+```text
+AUTHENTICATION
+│
+├── Register
+├── Login
+└── Current User
+
+
+EVENTS
+│
+├── Create Event
+├── List Events
+└── Event Details
+
+
+TEAMS
+│
+├── Create Team
+├── Team Details
+└── Team Members
+
+
+PROJECTS
+│
+├── Create Project
+├── Project Details
+└── Project Submission
+
+
+JUDGING
+│
+├── Judge Assignment
+├── Assigned Projects
+└── Evaluation / Scores
+
+
+RESULTS
+│
+└── Processed Results
+```
 
 ---
 
-# 13 — QUICK START
+# TECH STACK
 
-### Clone
+<p align="center">
+  <img src="./assets/tech-stack.svg" width="700" alt="DOGFOOD technology stack">
+</p>
+
+```text
+LANGUAGE        Python 3.12+
+BACKEND         FastAPI
+DATABASE        PostgreSQL
+ORM             SQLAlchemy
+VALIDATION      Pydantic
+AUTHENTICATION  JWT
+MIGRATIONS      Alembic
+TESTING         Pytest
+CONTAINER       Docker
+VERSION CONTROL Git / GitHub
+```
+
+---
+
+# PROJECT STRUCTURE
+
+```text
+Hackathon-Judging-Platform/
+│
+├── README.md
+│
+├── assets/
+│   ├── hero.svg
+│   ├── problem-solution.svg
+│   ├── judging-isolation.svg
+│   ├── scoring-engine.svg
+│   ├── architecture.svg
+│   ├── security-flow.svg
+│   ├── evaluation-flow.svg
+│   ├── results-engine.svg
+│   ├── tech-stack.svg
+│   └── footer.svg
+│
+├── backend/
+│   ├── app/
+│   ├── tests/
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── docker-compose.yml
+│
+└── frontend/
+```
+
+---
+
+# QUICK START
+
+## Clone
 
 ```bash
 git clone https://github.com/Nethralfh/Hackathon-Judging-Platform.git
 cd Hackathon-Judging-Platform
 ```
 
-### Start Backend
+## Backend
 
 ```bash
-docker compose up --build
+cd backend
 ```
 
-### Open API
+## Create virtual environment
+
+### Windows
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### macOS / Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+## Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run
+
+```bash
+uvicorn app.main:app --reload
+```
+
+## Open API
 
 ```text
 http://localhost:8000
 ```
 
-### Swagger
+## Open Swagger
 
 ```text
 http://localhost:8000/docs
@@ -562,74 +594,103 @@ http://localhost:8000/docs
 
 ---
 
-# 14 — ROADMAP
+# DOCKER
 
-```text
-CORE
-[x] Authentication
-[x] Event Management
-[x] Team Management
-[x] Project Submission
-[x] Judge Assignment
-[x] Judging Workflow
-[x] Score Processing
+If Docker is configured for the project:
 
-
-NEXT
-[ ] Advanced Analytics
-[ ] Real-time Dashboard
-[ ] Automated Insights
-[ ] Advanced Leaderboards
-[ ] Audit Timeline
-[ ] Extended Reporting
+```bash
+docker compose up --build
 ```
+
+The backend will then run through the configured Docker service.
 
 ---
 
-# 15 — THE BIGGER PICTURE
+# ROADMAP
 
-```text
-                         HACKATHON
-                              │
-                              ▼
-                        PARTICIPANTS
-                              │
-                              ▼
-                           PROJECTS
-                              │
-                              ▼
-                            JUDGES
-                              │
-                              ▼
-                         EVALUATION
-                              │
-                              ▼
-                    ┌──────────────────┐
-                    │     DOGFOOD      │
-                    │                  │
-                    │     SECURE       │
-                    │    ISOLATED      │
-                    │    STRUCTURED    │
-                    │    TRACEABLE     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                       FINAL RESULTS
-```
+### CORE
+
+- [x] Authentication
+- [x] Event management
+- [x] Team management
+- [x] Project management
+- [x] Judge assignment
+- [x] Judging workflow
+- [x] Interactive API documentation
+
+### NEXT
+
+- [ ] Advanced result aggregation
+- [ ] Score normalization
+- [ ] Ranking engine
+- [ ] Result export
+- [ ] Alembic migration workflow
+- [ ] Expanded automated tests
+- [ ] Dockerized deployment
+- [ ] Frontend integration
+- [ ] Advanced analytics
+- [ ] Audit timeline
 
 ---
+
+# WHY DOGFOOD?
+
+A judging platform should not simply collect numbers.
+
+It should preserve the path behind those numbers.
+
+```text
+WHO
+ │
+ ▼
+JUDGED WHAT
+ │
+ ▼
+UNDER WHICH CRITERIA
+ │
+ ▼
+WITH WHICH SCORE
+ │
+ ▼
+PROCESSED HOW
+ │
+ ▼
+RESULTED IN WHAT
+```
+
+That is the idea behind DOGFOOD.
+
+**Make the evaluation structured.**
+
+**Make access controlled.**
+
+**Make the result traceable.**
+
+---
+
+# VISION
+
+<p align="center">
+  <img src="./assets/footer.svg" width="700" alt="DOGFOOD Build Judge Trust">
+</p>
 
 <div align="center">
 
-# ⚡ BUILD. JUDGE. TRUST.
+# ⚡ DOGFOOD
 
-### DOGFOOD
+### BUILD. JUDGE. TRUST.
 
 **Hackathon Judging Platform**
 
 <br>
 
-`SECURE` · `ISOLATED` · `STRUCTURED` · `SCALABLE`
+`SECURE` · `ISOLATED` · `STRUCTURED` · `TRACEABLE`
+
+<br><br>
+
+**Judges evaluate projects.**
+
+**The system protects the evaluation.**
 
 <br>
 
