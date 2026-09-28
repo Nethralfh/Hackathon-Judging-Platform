@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
         extend: {
           fontFamily: {
             sans: [
-              'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
+              'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
               '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'
             ]
           }
@@ -20,44 +20,48 @@
       }
     }
   </script>
-  <style>
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans min-h-screen">
+<body class="bg-gray-50 text-gray-900 font-sans min-h-full flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
 
-  <header class="bg-white border-b border-gray-200">
-    <div class="max-w-6xl mx-auto px-4 h-11 flex items-center justify-between">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
 
-      <a href="/" class="font-semibold text-sm tracking-tight text-gray-900 hover:text-blue-600">
-        DOGFOOD
+      <a href="/" class="flex items-center gap-2.5 group">
+        <span class="w-6 h-6 rounded bg-blue-600 text-white font-bold text-xs flex items-center justify-center tracking-tight shadow-sm group-hover:bg-blue-700 transition-colors">D</span>
+        <span class="font-semibold text-sm tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">DOGFOOD</span>
       </a>
 
-      <nav class="flex items-center gap-5 text-sm text-gray-600">
-        <a href="/projects" class="hover:text-gray-900 {{ 'text-gray-900 font-medium' if current_path == '/projects' else '' }}">Gallery</a>
+      <nav class="flex items-center gap-5 text-sm">
+        <a href="/projects" class="transition-colors pb-0.5 {{ 'text-blue-600 font-medium border-b-2 border-blue-600' if current_path == '/projects' else 'text-gray-600 hover:text-gray-900' }}">Gallery</a>
 
         {% if current_user and current_user.role == 'participant' %}
-          <a href="/projects/new" class="hover:text-gray-900 {{ 'text-gray-900 font-medium' if current_path == '/projects/new' else '' }}">Submit Project</a>
+          <a href="/projects/new" class="transition-colors pb-0.5 {{ 'text-blue-600 font-medium border-b-2 border-blue-600' if current_path == '/projects/new' else 'text-gray-600 hover:text-gray-900' }}">Submit Project</a>
         {% endif %}
 
         {% if current_user and current_user.role == 'judge' %}
-          <a href="/judge/dashboard" class="hover:text-gray-900 {{ 'text-gray-900 font-medium' if current_path == '/judge/dashboard' else '' }}">My Scoring Queue</a>
+          <a href="/judge/dashboard" class="transition-colors pb-0.5 {{ 'text-blue-600 font-medium border-b-2 border-blue-600' if current_path == '/judge/dashboard' else 'text-gray-600 hover:text-gray-900' }}">My Scoring Queue</a>
         {% endif %}
 
         {% if current_user and current_user.role == 'organizer' %}
-          <a href="/organizer/dashboard" class="hover:text-gray-900 {{ 'text-gray-900 font-medium' if current_path == '/organizer/dashboard' else '' }}">Dashboard</a>
-          <a href="/api/v1/results/export" class="hover:text-gray-900">Export CSV</a>
+          <a href="/organizer/dashboard" class="transition-colors pb-0.5 {{ 'text-blue-600 font-medium border-b-2 border-blue-600' if current_path == '/organizer/dashboard' else 'text-gray-600 hover:text-gray-900' }}">Dashboard</a>
+          <a href="/api/v1/results/export" class="text-gray-600 hover:text-gray-900 transition-colors">Export CSV</a>
         {% endif %}
 
-        {% if not current_user %}
-          <span class="text-gray-400 text-xs">No session</span>
-        {% else %}
-          <span class="text-xs text-gray-400 border-l border-gray-200 pl-4">{{ current_user.role }}</span>
-        {% endif %}
+        <div class="flex items-center gap-2 border-l border-gray-200 pl-4 ml-1">
+          {% if not current_user %}
+            <span class="rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600">Visitor</span>
+          {% else %}
+            {% if current_user.username %}
+              <span class="text-xs font-medium text-gray-700 hidden sm:inline">{{ current_user.username }}</span>
+            {% endif %}
+            <span class="rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 capitalize">{{ current_user.role }}</span>
+          {% endif %}
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-8">
+  <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 flex-1">
     {% block content %}{% endblock %}
   </main>
 

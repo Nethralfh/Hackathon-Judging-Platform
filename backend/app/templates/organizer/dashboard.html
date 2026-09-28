@@ -2,97 +2,136 @@
 {% block content %}
 {# views/organizer/dashboard.html — Organizer Progress View #}
 
-<div class="flex items-center justify-between mb-6">
-  <h1 class="text-xl font-semibold text-gray-900">Judging Progress</h1>
-  <a
-    href="/api/v1/results/export"
-    class="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-sm hover:bg-blue-700"
-  >Export CSV</a>
+{# Page Header #}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-gray-900 tracking-tight">Judging Progress</h1>
+    <p class="text-sm text-gray-500 mt-1">Real-time overview of submissions, scoring completion, and judge activity.</p>
+  </div>
+  <div>
+    <a
+      href="/api/v1/results/export"
+      class="border border-gray-300 bg-white text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm inline-flex items-center gap-2"
+    >
+      <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+      Export CSV
+    </a>
+  </div>
 </div>
 
-{# Summary line #}
-<p class="text-sm text-gray-600 mb-6">
-  <strong class="text-gray-900">{{ stats.scored_projects }}</strong> of
-  <strong class="text-gray-900">{{ stats.total_projects }}</strong> projects have at least one score.
-  <span class="text-gray-400 ml-2">|</span>
-  <span class="ml-2">{{ stats.total_scores }} total scores submitted across {{ stats.total_projects }} projects.</span>
-</p>
+{# Summary stats: 3 simple stat blocks separated by vertical dividers in a row #}
+<div class="bg-white border border-gray-200 rounded-lg p-6 mb-8 shadow-sm">
+  <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
+    <div class="py-3 sm:py-0 sm:px-6 first:sm:pl-0">
+      <div class="text-3xl font-semibold text-gray-900 tracking-tight">
+        {{ stats.scored_projects }} <span class="text-lg font-normal text-gray-400">/ {{ stats.total_projects }}</span>
+      </div>
+      <div class="text-sm text-gray-500 mt-1 font-medium">Scored Projects</div>
+    </div>
+    <div class="py-3 sm:py-0 sm:px-6">
+      <div class="text-3xl font-semibold text-gray-900 tracking-tight">{{ stats.total_scores }}</div>
+      <div class="text-sm text-gray-500 mt-1 font-medium">Total Scores Submitted</div>
+    </div>
+    <div class="py-3 sm:py-0 sm:px-6 last:sm:pr-0">
+      <div class="text-3xl font-semibold text-gray-900 tracking-tight">{{ stats.total_projects }}</div>
+      <div class="text-sm text-gray-500 mt-1 font-medium">Total Projects</div>
+    </div>
+  </div>
+</div>
 
 {# ===== Projects table ===== #}
-<h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Projects</h2>
-<div class="border border-gray-200 rounded-sm overflow-hidden mb-8">
-  <table class="w-full text-sm">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600">Project</th>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600">Track</th>
-        <th class="text-right px-4 py-2.5 font-medium text-gray-600">Scores received</th>
-        <th class="text-right px-4 py-2.5 font-medium text-gray-600">Avg score</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if project_rows | length == 0 %}
-        <tr>
-          <td colspan="4" class="px-4 py-5 text-gray-400 text-center">No projects yet.</td>
-        </tr>
-      {% endif %}
-      {% for row in project_rows %}
-        <tr class="border-t border-gray-100 hover:bg-gray-50">
-          <td class="px-4 py-2.5 font-medium">
-            <a href="/projects/{{ row.id }}" class="text-blue-600 hover:underline">{{ row.title }}</a>
-          </td>
-          <td class="px-4 py-2.5 text-gray-500 text-xs">
-            <span class="border border-gray-200 rounded-sm px-1.5 py-0.5">{{ row.track }}</span>
-          </td>
-          <td class="px-4 py-2.5 text-right text-gray-700">
-            {% if row.score_count == 0 %}
-              <span class="text-gray-400">0</span>
-            {% else %}
-              {{ row.score_count }}
-            {% endif %}
-          </td>
-          <td class="px-4 py-2.5 text-right">
-            {% if row.avg_score is none %}
-              <span class="text-gray-400">—</span>
-            {% else %}
-              <span class="font-mono text-gray-800">{{ "%.2f"|format(row.avg_score) }}</span>
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="mb-8">
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="text-base font-semibold text-gray-900 tracking-tight">Projects Overview</h2>
+    <span class="text-xs text-gray-500">{{ project_rows | length }} projects listed</span>
+  </div>
+  
+  <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Project</th>
+            <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Track</th>
+            <th scope="col" class="text-right px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Scores Received</th>
+            <th scope="col" class="text-right px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Avg Score</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {% if project_rows | length == 0 %}
+            <tr>
+              <td colspan="4" class="px-4 py-8 text-gray-500 text-center">No projects registered yet.</td>
+            </tr>
+          {% endif %}
+          {% for row in project_rows %}
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3.5 font-medium">
+                <a href="/projects/{{ row.id }}" class="text-blue-600 hover:text-blue-800 hover:underline">{{ row.title }}</a>
+              </td>
+              <td class="px-4 py-3.5 text-gray-500">
+                <span class="rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 border border-gray-200/60 inline-block">{{ row.track }}</span>
+              </td>
+              <td class="px-4 py-3.5 text-right text-gray-700 font-medium">
+                {% if row.score_count == 0 %}
+                  <span class="text-gray-400 font-normal">0</span>
+                {% else %}
+                  {{ row.score_count }}
+                {% endif %}
+              </td>
+              <td class="px-4 py-3.5 text-right">
+                {% if row.avg_score is none %}
+                  <span class="text-gray-400 font-mono">—</span>
+                {% else %}
+                  <span class="font-mono font-medium text-gray-900 bg-gray-50 border border-gray-200/80 rounded px-2 py-0.5">{{ "%.2f"|format(row.avg_score) }}</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 {# ===== Judges table ===== #}
-<h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Judges</h2>
-<div class="border border-gray-200 rounded-sm overflow-hidden">
-  <table class="w-full text-sm">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600">Judge</th>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600">Assigned tracks</th>
-        <th class="text-right px-4 py-2.5 font-medium text-gray-600">Reviews completed</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if judge_rows | length == 0 %}
-        <tr>
-          <td colspan="3" class="px-4 py-5 text-gray-400 text-center">No judges found.</td>
-        </tr>
-      {% endif %}
-      {% for j in judge_rows %}
-        <tr class="border-t border-gray-100 hover:bg-gray-50">
-          <td class="px-4 py-2.5 font-medium text-gray-900">{{ j.name }}</td>
-          <td class="px-4 py-2.5 text-gray-500 text-xs">
-            {% for t in j.tracks %}
-              <span class="inline-block border border-gray-200 rounded-sm px-1.5 py-0.5 mr-1">{{ t }}</span>
-            {% endfor %}
-          </td>
-          <td class="px-4 py-2.5 text-right text-gray-700">{{ j.review_count }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div>
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="text-base font-semibold text-gray-900 tracking-tight">Judges Activity</h2>
+    <span class="text-xs text-gray-500">{{ judge_rows | length }} judges active</span>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Judge</th>
+            <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Assigned Tracks</th>
+            <th scope="col" class="text-right px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500">Reviews Completed</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {% if judge_rows | length == 0 %}
+            <tr>
+              <td colspan="3" class="px-4 py-8 text-gray-500 text-center">No judges found.</td>
+            </tr>
+          {% endif %}
+          {% for j in judge_rows %}
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3.5 font-medium text-gray-900">{{ j.name }}</td>
+              <td class="px-4 py-3.5 text-gray-500">
+                {% for t in j.tracks %}
+                  <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 border border-gray-200/60 mr-1">{{ t }}</span>
+                {% endfor %}
+              </td>
+              <td class="px-4 py-3.5 text-right font-medium text-gray-700">{{ j.review_count }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 {% endblock %}

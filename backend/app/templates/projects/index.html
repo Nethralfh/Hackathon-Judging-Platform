@@ -2,66 +2,82 @@
 {% block content %}
 {# views/projects/index.html — Public Gallery #}
 
-<div class="flex items-center justify-between mb-6">
-  <h1 class="text-xl font-semibold text-gray-900">Project Gallery</h1>
+{# Page Header #}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-gray-900 tracking-tight">Project Gallery</h1>
+    <p class="text-sm text-gray-500 mt-1">Explore hackathon submissions, view project details, and filter by competition track.</p>
+  </div>
   {% if current_user and current_user.role == 'participant' %}
-    <a href="/projects/new" class="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-sm hover:bg-blue-700">Submit Project</a>
+    <div>
+      <a href="/projects/new" class="inline-flex items-center justify-center text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors shadow-sm">
+        Submit Project
+      </a>
+    </div>
   {% endif %}
 </div>
 
-{# Filters #}
-<div class="flex items-center gap-3 mb-4">
-  <input
-    id="search-input"
-    type="text"
-    placeholder="Search by title..."
-    class="border border-gray-200 rounded-sm text-sm px-2.5 py-1.5 w-56 focus:outline-none focus:border-gray-400"
-  />
-  <select
-    id="track-filter"
-    class="border border-gray-200 rounded-sm text-sm px-2.5 py-1.5 focus:outline-none focus:border-gray-400 bg-white"
-  >
-    <option value="">All tracks</option>
-    {% for t in tracks %}
-      <option value="{{ t }}">{{ t }}</option>
-    {% endfor %}
-  </select>
-  <span id="result-count" class="text-xs text-gray-400 ml-auto"></span>
+{# Filter & Search Toolbar #}
+<div class="bg-gray-50 rounded-lg p-3 border border-gray-200 mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+  <div class="relative flex-1 sm:max-w-xs">
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Search by title..."
+      class="w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
+    />
+  </div>
+
+  <div class="sm:w-48">
+    <select
+      id="track-filter"
+      class="w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
+    >
+      <option value="">All tracks</option>
+      {% for t in tracks %}
+        <option value="{{ t }}">{{ t }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <span id="result-count" class="text-sm text-gray-500 sm:ml-auto self-center font-medium"></span>
 </div>
 
-{# Projects table #}
-<div class="border border-gray-200 rounded-sm overflow-hidden">
-  <table class="w-full text-sm" id="projects-table">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600 w-2/5">Title</th>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600 w-2/5">Summary</th>
-        <th class="text-left px-4 py-2.5 font-medium text-gray-600 w-1/5">Track</th>
-      </tr>
-    </thead>
-    <tbody id="projects-body">
-      {% if projects | length == 0 %}
+{# Projects table card #}
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm" id="projects-table">
+      <thead class="bg-gray-50 border-b border-gray-200">
         <tr>
-          <td colspan="3" class="px-4 py-6 text-gray-400 text-center">No projects submitted yet.</td>
+          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-2/5">Title</th>
+          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-2/5">Summary</th>
+          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-1/5">Track</th>
         </tr>
-      {% endif %}
-      {% for p in projects %}
-        <tr
-          class="border-t border-gray-100 hover:bg-gray-50 project-row"
-          data-title="{{ p.title | lower }}"
-          data-track="{{ p.track }}"
-        >
-          <td class="px-4 py-2.5 font-medium">
-            <a href="/projects/{{ p.id }}" class="text-blue-600 hover:underline">{{ p.title }}</a>
-          </td>
-          <td class="px-4 py-2.5 text-gray-600">{{ p.description }}</td>
-          <td class="px-4 py-2.5">
-            <span class="text-xs border border-gray-200 rounded-sm px-1.5 py-0.5 text-gray-600">{{ p.track }}</span>
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody id="projects-body" class="divide-y divide-gray-100">
+        {% if projects | length == 0 %}
+          <tr>
+            <td colspan="3" class="px-4 py-12 text-gray-500 text-center text-sm">No projects submitted yet.</td>
+          </tr>
+        {% endif %}
+        {% for p in projects %}
+          <tr
+            class="hover:bg-gray-50 transition-colors project-row"
+            data-title="{{ p.title | lower }}"
+            data-track="{{ p.track }}"
+          >
+            <td class="px-4 py-3.5 font-medium">
+              <a href="/projects/{{ p.id }}" class="text-blue-600 hover:text-blue-800 hover:underline">{{ p.title }}</a>
+            </td>
+            <td class="px-4 py-3.5 text-gray-600">{{ p.description }}</td>
+            <td class="px-4 py-3.5">
+              <span class="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 border border-gray-200/60 inline-block">{{ p.track }}</span>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script>
