@@ -2,69 +2,84 @@
 {% block content %}
 {# views/projects/new.html — Project Submission Form #}
 
-<div class="max-w-lg mx-auto mt-4 sm:mt-6">
+<div class="max-w-xl mx-auto mt-4 sm:mt-6">
+  
+  {# Breadcrumb & Page Header #}
   <div class="mb-6">
-    <a href="/projects" class="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1 mb-4 transition-colors">
-      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <a href="/projects" class="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-400 hover:text-lime-400 transition-colors mb-4 group">
+      <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
-      Back to Gallery
+      RETURN TO GALLERY
     </a>
-    <h1 class="text-2xl font-semibold text-gray-900 tracking-tight">Submit a Project</h1>
-    <p class="text-sm text-gray-500 mt-1">Provide your project details to enter the judging pool. All fields are required.</p>
+    <h1 class="text-3xl font-extrabold text-white tracking-tight">Submit Your Project</h1>
+    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
+      Register your hackathon project for evaluation. Ensure your repository is publicly accessible for the judges.
+    </p>
   </div>
 
-  {# Error / success banners (populated by JS) #}
-  <div id="msg-error" class="hidden mb-5 border-l-4 border-red-500 bg-red-50 text-red-700 p-3.5 rounded-r-md text-sm font-medium shadow-sm"></div>
-  <div id="msg-success" class="hidden mb-5 border-l-4 border-green-500 bg-green-50 text-green-700 p-3.5 rounded-r-md text-sm font-medium shadow-sm"></div>
+  {# Feedback Banners #}
+  <div id="msg-error" class="hidden mb-6 border-l-4 border-red-500 bg-red-950/40 text-red-200 p-4 rounded-r-xl text-sm font-medium border border-white/5 shadow-lg"></div>
+  <div id="msg-success" class="hidden mb-6 border-l-4 border-lime-400 bg-lime-950/40 text-lime-200 p-4 rounded-r-xl text-sm font-medium border border-white/5 shadow-lg"></div>
 
-  {# Form Card #}
-  <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-    <form id="submit-form" class="space-y-5">
+  {# Form Glass Card #}
+  <div class="relative bg-obsidian-900/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+    {# Subtle top edge glow #}
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-lime-400/40 to-transparent"></div>
+
+    <form id="submit-form" class="space-y-6">
       <div>
-        <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Project Title</label>
+        <label for="title" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+          Project Title <span class="text-lime-400">*</span>
+        </label>
         <input
           type="text"
           id="title"
           name="title"
           required
           maxlength="120"
-          class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-          placeholder="e.g. Hollow Signal"
+          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
+          placeholder="e.g. NeuralPulse AI"
         />
       </div>
 
       <div>
-        <label for="summary" class="block text-sm font-medium text-gray-700 mb-1">One-line Summary</label>
+        <label for="summary" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+          One-line Summary <span class="text-lime-400">*</span>
+        </label>
         <input
           type="text"
           id="summary"
           name="summary"
           required
           maxlength="200"
-          class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-          placeholder="What does your project do in one sentence?"
+          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
+          placeholder="What does your project solve in one crisp sentence?"
         />
       </div>
 
       <div>
-        <label for="repo_url" class="block text-sm font-medium text-gray-700 mb-1">Repository URL</label>
+        <label for="repo_url" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+          Repository URL <span class="text-lime-400">*</span>
+        </label>
         <input
           type="url"
           id="repo_url"
           name="repo_url"
           required
-          class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-          placeholder="https://github.com/your-org/your-repo"
+          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
+          placeholder="https://github.com/organization/project"
         />
       </div>
 
-      <div class="pt-2 flex items-center justify-between">
-        <a href="/projects" class="text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors">Cancel</a>
+      <div class="pt-2 flex items-center justify-between border-t border-white/[0.06]">
+        <a href="/projects" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+          Cancel
+        </a>
         <button
           type="submit"
           id="submit-btn"
-          class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          class="inline-flex items-center justify-center font-bold text-sm bg-lime-400 text-obsidian-950 px-6 py-2.5 rounded-xl hover:bg-lime-300 transition-all duration-200 shadow-[0_0_20px_rgba(182,255,59,0.25)] hover:shadow-[0_0_25px_rgba(182,255,59,0.4)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           Submit Project
         </button>
@@ -101,7 +116,7 @@
         });
 
         if (res.ok) {
-          okBox.textContent = 'Project submitted successfully.';
+          okBox.textContent = 'Project submitted successfully!';
           okBox.classList.remove('hidden');
           form.reset();
         } else {

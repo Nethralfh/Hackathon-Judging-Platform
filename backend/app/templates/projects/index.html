@@ -2,15 +2,26 @@
 {% block content %}
 {# views/projects/index.html — Public Gallery #}
 
-{# Page Header #}
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+{# Page Hero Header #}
+<div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
   <div>
-    <h1 class="text-2xl font-semibold text-gray-900 tracking-tight">Project Gallery</h1>
-    <p class="text-sm text-gray-500 mt-1">Explore hackathon submissions, view project details, and filter by competition track.</p>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-lime-400/10 text-lime-300 border border-lime-400/20 mb-3 shadow-[0_0_15px_rgba(182,255,59,0.15)]">
+      <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span>
+      HACKATHON SUBMISSION SHOWCASE
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+      Project Gallery
+    </h1>
+    <p class="text-sm text-slate-400 mt-2 max-w-xl leading-relaxed">
+      Explore cutting-edge projects submitted by participating teams. Filter by event tracks, inspect source code repositories, and review evaluations.
+    </p>
   </div>
   {% if current_user and current_user.role == 'participant' %}
-    <div>
-      <a href="/projects/new" class="inline-flex items-center justify-center text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors shadow-sm">
+    <div class="shrink-0">
+      <a href="/projects/new" class="inline-flex items-center justify-center gap-2 text-sm font-bold bg-lime-400 text-obsidian-950 px-5 py-2.5 rounded-xl hover:bg-lime-300 transition-all duration-200 shadow-[0_0_20px_rgba(182,255,59,0.25)] hover:shadow-[0_0_25px_rgba(182,255,59,0.4)] hover:-translate-y-0.5">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
         Submit Project
       </a>
     </div>
@@ -18,60 +29,85 @@
 </div>
 
 {# Filter & Search Toolbar #}
-<div class="bg-gray-50 rounded-lg p-3 border border-gray-200 mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+<div class="bg-obsidian-900/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/[0.08] mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shadow-xl">
+  
+  {# Search input with icon #}
   <div class="relative flex-1 sm:max-w-xs">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
     <input
       id="search-input"
       type="text"
-      placeholder="Search by title..."
-      class="w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
+      placeholder="Search projects..."
+      class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 pl-9 pr-3.5 py-2 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all"
     />
   </div>
 
-  <div class="sm:w-48">
+  {# Track filter select #}
+  <div class="sm:w-52">
     <select
       id="track-filter"
-      class="w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
+      class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-3.5 py-2 text-sm text-slate-200 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all cursor-pointer"
     >
-      <option value="">All tracks</option>
+      <option value="" class="bg-obsidian-950 text-slate-300">All tracks</option>
       {% for t in tracks %}
-        <option value="{{ t }}">{{ t }}</option>
+        <option value="{{ t }}" class="bg-obsidian-950 text-slate-100">{{ t }}</option>
       {% endfor %}
     </select>
   </div>
 
-  <span id="result-count" class="text-sm text-gray-500 sm:ml-auto self-center font-medium"></span>
+  {# Live Result Count #}
+  <div class="sm:ml-auto self-center flex items-center gap-2">
+    <span id="result-count" class="text-xs font-mono text-slate-400 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-lg font-medium"></span>
+  </div>
 </div>
 
-{# Projects table card #}
-<div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+{# Projects Table Container #}
+<div class="bg-obsidian-900/60 backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl">
   <div class="overflow-x-auto">
-    <table class="w-full text-sm" id="projects-table">
-      <thead class="bg-gray-50 border-b border-gray-200">
+    <table class="w-full text-sm text-left" id="projects-table">
+      <thead class="bg-white/[0.02] border-b border-white/[0.08] text-slate-400 font-mono text-xs uppercase tracking-wider">
         <tr>
-          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-2/5">Title</th>
-          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-2/5">Summary</th>
-          <th scope="col" class="text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider text-gray-500 w-1/5">Track</th>
+          <th scope="col" class="px-5 py-3.5 font-semibold w-2/5">Project</th>
+          <th scope="col" class="px-5 py-3.5 font-semibold w-2/5">Summary</th>
+          <th scope="col" class="px-5 py-3.5 font-semibold w-1/5">Track</th>
         </tr>
       </thead>
-      <tbody id="projects-body" class="divide-y divide-gray-100">
+      <tbody id="projects-body" class="divide-y divide-white/[0.04]">
         {% if projects | length == 0 %}
           <tr>
-            <td colspan="3" class="px-4 py-12 text-gray-500 text-center text-sm">No projects submitted yet.</td>
+            <td colspan="3" class="px-5 py-16 text-slate-500 text-center font-mono text-sm">
+              <svg class="w-8 h-8 mx-auto mb-2 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              No projects submitted yet.
+            </td>
           </tr>
         {% endif %}
         {% for p in projects %}
           <tr
-            class="hover:bg-gray-50 transition-colors project-row"
+            class="hover:bg-white/[0.03] transition-all duration-150 project-row group"
             data-title="{{ p.title | lower }}"
             data-track="{{ p.track }}"
           >
-            <td class="px-4 py-3.5 font-medium">
-              <a href="/projects/{{ p.id }}" class="text-blue-600 hover:text-blue-800 hover:underline">{{ p.title }}</a>
+            <td class="px-5 py-4 font-semibold text-white">
+              <a href="/projects/{{ p.id }}" class="inline-flex items-center gap-1.5 text-white group-hover:text-lime-400 transition-colors">
+                <span>{{ p.title }}</span>
+                <svg class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </td>
-            <td class="px-4 py-3.5 text-gray-600">{{ p.description }}</td>
-            <td class="px-4 py-3.5">
-              <span class="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 border border-gray-200/60 inline-block">{{ p.track }}</span>
+            <td class="px-5 py-4 text-slate-400 leading-relaxed text-xs sm:text-sm">
+              {{ p.description }}
+            </td>
+            <td class="px-5 py-4">
+              <span class="inline-block rounded-lg bg-lime-400/[0.08] px-2.5 py-1 text-xs font-mono font-medium text-lime-300 border border-lime-400/20 shadow-sm">
+                {{ p.track }}
+              </span>
             </td>
           </tr>
         {% endfor %}
@@ -100,7 +136,7 @@
         if (show) visible++;
       });
 
-      countEl.textContent = visible + ' of ' + rows.length + ' projects';
+      countEl.textContent = visible + ' / ' + rows.length + ' projects';
     }
 
     searchInput.addEventListener('input', applyFilters);
