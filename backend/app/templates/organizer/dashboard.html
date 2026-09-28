@@ -5,60 +5,76 @@
 {# Page Header #}
 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
   <div>
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-lime-400/10 text-lime-300 border border-lime-400/20 mb-3 shadow-[0_0_15px_rgba(182,255,59,0.15)]">
-      <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span>
-      REAL-TIME TELEMETRY & OPERATIONS
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/80 mb-3 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+      📊 REAL-TIME TELEMETRY & OPERATIONS
     </div>
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Judging Progress</h1>
-    <p class="text-sm text-slate-400 mt-2 max-w-xl leading-relaxed">
-      Monitor live submission evaluation progress, judge assignment distributions, and score metrics.
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Judging Progress</h1>
+    <p class="text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
+      Monitor live submission evaluation progress, judge assignment distributions, and score metrics in real-time.
     </p>
   </div>
   <div class="shrink-0">
     <a
       href="/api/v1/results/export"
-      class="inline-flex items-center gap-2 border border-white/10 bg-obsidian-900/90 text-white hover:text-lime-400 hover:border-lime-400/40 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all duration-200 shadow-lg hover:shadow-[0_0_15px_rgba(182,255,59,0.15)]"
+      class="inline-flex items-center gap-2 border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 hover:text-indigo-600 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm hover:shadow"
     >
-      <svg class="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <svg class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
       </svg>
-      EXPORT CSV REPORT
+      📥 EXPORT CSV REPORT
     </a>
   </div>
 </div>
 
-{# Summary Stats: 3 simple stat blocks separated by vertical dividers in a row #}
-<div class="relative bg-obsidian-900/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl overflow-hidden">
-  {# Subtle top glow #}
-  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-lime-400/30 to-transparent"></div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08]">
-    <div class="py-4 sm:py-0 sm:px-6 first:sm:pl-0">
-      <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight flex items-baseline gap-2">
-        <span class="text-lime-400">{{ stats.scored_projects }}</span>
-        <span class="text-lg text-slate-500 font-normal">/ {{ stats.total_projects }}</span>
-      </div>
-      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mt-2">
-        Scored Projects
+{# Summary Stats: 3 vibrant cards #}
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+  <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-unstop hover:shadow-unstop-hover transition-all">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Scored Projects</span>
+      <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg shadow-inner">
+        🏆
       </div>
     </div>
+    <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight flex items-baseline gap-2">
+      <span class="text-indigo-600">{{ stats.scored_projects }}</span>
+      <span class="text-lg text-slate-400 font-normal">/ {{ stats.total_projects }}</span>
+    </div>
+    <div class="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
+      <span class="inline-block w-2 h-2 rounded-full bg-indigo-500"></span>
+      Evaluations completed
+    </div>
+  </div>
 
-    <div class="py-4 sm:py-0 sm:px-6">
-      <div class="text-3xl sm:text-4xl font-extrabold font-mono text-lime-400 tracking-tight">
-        {{ stats.total_scores }}
-      </div>
-      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mt-2">
-        Total Scores Submitted
+  <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-unstop hover:shadow-unstop-hover transition-all">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Scores</span>
+      <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg shadow-inner">
+        ⚡
       </div>
     </div>
+    <div class="text-3xl sm:text-4xl font-extrabold text-purple-600 tracking-tight">
+      {{ stats.total_scores }}
+    </div>
+    <div class="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
+      <span class="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
+      Individual scorecards filed
+    </div>
+  </div>
 
-    <div class="py-4 sm:py-0 sm:px-6 last:sm:pr-0">
-      <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">
-        {{ stats.total_projects }}
+  <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-unstop hover:shadow-unstop-hover transition-all">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Submissions</span>
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg shadow-inner">
+        📁
       </div>
-      <div class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mt-2">
-        Total Submissions
-      </div>
+    </div>
+    <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+      {{ stats.total_projects }}
+    </div>
+    <div class="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+      Teams registered in hackathon
     </div>
   </div>
 </div>
@@ -66,57 +82,64 @@
 {# ===== Projects table ===== #}
 <div class="mb-10">
   <div class="flex items-center justify-between mb-4">
-    <div class="flex items-center gap-2">
-      <h2 class="text-base font-bold text-white tracking-tight">Projects Evaluation Overview</h2>
-      <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <div class="flex items-center gap-2.5">
+      <h2 class="text-lg font-bold text-slate-900 tracking-tight">Projects Evaluation Overview</h2>
+      <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
     </div>
-    <span class="text-xs font-mono text-slate-400 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
+    <span class="text-xs font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-3 py-1 rounded-full">
       {{ project_rows | length }} projects
     </span>
   </div>
   
-  <div class="bg-obsidian-900/60 backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl">
+  <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-unstop">
     <div class="overflow-x-auto">
       <table class="w-full text-sm text-left">
-        <thead class="bg-white/[0.02] border-b border-white/[0.08] text-slate-400 font-mono text-xs uppercase tracking-wider">
+        <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
           <tr>
-            <th scope="col" class="px-5 py-3.5 font-semibold">Project</th>
-            <th scope="col" class="px-5 py-3.5 font-semibold">Track</th>
-            <th scope="col" class="px-5 py-3.5 font-semibold text-right">Scores Received</th>
-            <th scope="col" class="px-5 py-3.5 font-semibold text-right">Avg Score</th>
+            <th scope="col" class="px-6 py-4">Project</th>
+            <th scope="col" class="px-6 py-4">Track</th>
+            <th scope="col" class="px-6 py-4 text-center">Scores Received</th>
+            <th scope="col" class="px-6 py-4 text-right">Avg Score</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-white/[0.04]">
+        <tbody class="divide-y divide-slate-100">
           {% if project_rows | length == 0 %}
             <tr>
-              <td colspan="4" class="px-5 py-12 text-slate-500 text-center font-mono text-sm">No projects registered yet.</td>
+              <td colspan="4" class="px-6 py-12 text-slate-500 text-center font-medium text-sm">No projects registered yet.</td>
             </tr>
           {% endif %}
           {% for row in project_rows %}
-            <tr class="hover:bg-white/[0.03] transition-colors group">
-              <td class="px-5 py-4 font-semibold text-white">
-                <a href="/projects/{{ row.id }}" class="group-hover:text-lime-400 transition-colors inline-flex items-center gap-1.5">
-                  {{ row.title }}
+            <tr class="hover:bg-indigo-50/20 transition-colors group">
+              <td class="px-6 py-4">
+                <a href="/projects/{{ row.id }}" class="flex items-center gap-3 font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  <div class="w-8 h-8 rounded-lg gradient-brand text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
+                    {{ row.title[:2] | upper }}
+                  </div>
+                  <span>{{ row.title }}</span>
                 </a>
               </td>
-              <td class="px-5 py-4">
-                <span class="rounded-lg bg-lime-400/[0.08] px-2.5 py-1 text-xs font-mono font-medium text-lime-300 border border-lime-400/20 inline-block">
-                  {{ row.track }}
+              <td class="px-6 py-4">
+                <span class="rounded-full bg-indigo-50 px-3 py-0.5 text-xs font-semibold text-indigo-700 border border-indigo-200/60 inline-block">
+                  🏷️ {{ row.track }}
                 </span>
               </td>
-              <td class="px-5 py-4 text-right font-mono font-medium text-slate-300">
+              <td class="px-6 py-4 text-center">
                 {% if row.score_count == 0 %}
-                  <span class="text-slate-600">0</span>
+                  <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-500 border border-slate-200">
+                    0
+                  </span>
                 {% else %}
-                  <span class="text-lime-300">{{ row.score_count }}</span>
+                  <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                    {{ row.score_count }}
+                  </span>
                 {% endif %}
               </td>
-              <td class="px-5 py-4 text-right">
+              <td class="px-6 py-4 text-right">
                 {% if row.avg_score is none %}
-                  <span class="text-slate-600 font-mono text-xs">—</span>
+                  <span class="text-slate-400 text-xs font-semibold">—</span>
                 {% else %}
-                  <span class="font-mono font-bold text-xs bg-lime-400/10 text-lime-300 border border-lime-400/30 rounded-lg px-2.5 py-1 shadow-sm">
-                    {{ "%.2f"|format(row.avg_score) }}
+                  <span class="font-bold text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg px-2.5 py-1 shadow-sm inline-flex items-center gap-1">
+                    ⭐ {{ "%.2f"|format(row.avg_score) }}
                   </span>
                 {% endif %}
               </td>
@@ -131,46 +154,52 @@
 {# ===== Judges table ===== #}
 <div>
   <div class="flex items-center justify-between mb-4">
-    <div class="flex items-center gap-2">
-      <h2 class="text-base font-bold text-white tracking-tight">Active Judges & Roster</h2>
-      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+    <div class="flex items-center gap-2.5">
+      <h2 class="text-lg font-bold text-slate-900 tracking-tight">Active Judges & Roster</h2>
+      <span class="w-2 h-2 rounded-full bg-purple-600"></span>
     </div>
-    <span class="text-xs font-mono text-slate-400 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
+    <span class="text-xs font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-3 py-1 rounded-full">
       {{ judge_rows | length }} judges
     </span>
   </div>
 
-  <div class="bg-obsidian-900/60 backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl">
+  <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-unstop">
     <div class="overflow-x-auto">
       <table class="w-full text-sm text-left">
-        <thead class="bg-white/[0.02] border-b border-white/[0.08] text-slate-400 font-mono text-xs uppercase tracking-wider">
+        <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
           <tr>
-            <th scope="col" class="px-5 py-3.5 font-semibold">Judge</th>
-            <th scope="col" class="px-5 py-3.5 font-semibold">Assigned Tracks</th>
-            <th scope="col" class="px-5 py-3.5 font-semibold text-right">Reviews Completed</th>
+            <th scope="col" class="px-6 py-4">Judge</th>
+            <th scope="col" class="px-6 py-4">Assigned Tracks</th>
+            <th scope="col" class="px-6 py-4 text-right">Reviews Completed</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-white/[0.04]">
+        <tbody class="divide-y divide-slate-100">
           {% if judge_rows | length == 0 %}
             <tr>
-              <td colspan="3" class="px-5 py-12 text-slate-500 text-center font-mono text-sm">No judges found.</td>
+              <td colspan="3" class="px-6 py-12 text-slate-500 text-center font-medium text-sm">No judges found.</td>
             </tr>
           {% endif %}
           {% for j in judge_rows %}
-            <tr class="hover:bg-white/[0.03] transition-colors">
-              <td class="px-5 py-4 font-semibold text-white flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-500"></span>
-                <span>{{ j.name }}</span>
+            <tr class="hover:bg-purple-50/20 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3 font-bold text-slate-900">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
+                    {{ j.name[:2] | upper }}
+                  </div>
+                  <span>{{ j.name }}</span>
+                </div>
               </td>
-              <td class="px-5 py-4 text-slate-400">
+              <td class="px-6 py-4">
                 {% for t in j.tracks %}
-                  <span class="inline-block rounded-md bg-white/[0.04] px-2 py-0.5 text-xs font-mono text-slate-300 border border-white/10 mr-1.5 my-0.5">
-                    {{ t }}
+                  <span class="inline-block rounded-md bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200 mr-1.5 my-0.5">
+                    🏷️ {{ t }}
                   </span>
                 {% endfor %}
               </td>
-              <td class="px-5 py-4 text-right font-mono font-bold text-lime-400">
-                {{ j.review_count }}
+              <td class="px-6 py-4 text-right">
+                <span class="inline-flex items-center gap-1 font-bold text-sm text-purple-700 bg-purple-50 px-3 py-1 rounded-lg border border-purple-200">
+                  ✓ {{ j.review_count }}
+                </span>
               </td>
             </tr>
           {% endfor %}

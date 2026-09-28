@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full dark">
+<html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ title }} — DOGFOOD</title>
-  <meta name="description" content="DOGFOOD hackathon judging platform" />
+  <title>{{ title }} — DOGFOOD Hackathon Platform</title>
+  <meta name="description" content="DOGFOOD - Next-generation Hackathon Judging & Evaluation Platform" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -19,123 +18,124 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            lime: {
-              DEFAULT: '#B6FF3B',
-              300: '#d9ff7a',
-              400: '#B6FF3B',
-              500: '#9de824',
-              900: '#233900',
-            },
-            obsidian: {
-              950: '#06090e',
-              900: '#0a0e17',
-              850: '#0f1523',
-              800: '#141c2e',
-              700: '#1c2840',
+            unstop: {
+              blue: '#1C4980',
+              accent: '#3B82F6',
+              purple: '#6366F1',
+              violet: '#7C3AED',
+              coral: '#F43F5E',
+              emerald: '#10B981',
+              amber: '#F59E0B',
+              bg: '#F8FAFC',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
             }
           },
-          animation: {
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'shimmer': 'shimmer 2.5s infinite',
-          },
-          keyframes: {
-            shimmer: {
-              '100%': { transform: 'translateX(100%)' },
-            }
+          boxShadow: {
+            'unstop': '0 4px 20px -2px rgba(28, 73, 128, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            'unstop-hover': '0 12px 30px -4px rgba(99, 102, 241, 0.16), 0 4px 10px -2px rgba(0, 0, 0, 0.06)',
+            'unstop-card': '0 2px 12px -1px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.04)',
           }
         }
       }
     }
   </script>
   <style>
-    /* Sleek custom scrollbars */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0a0e17; }
-    ::-webkit-scrollbar-thumb { background: #1c2840; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #283756; }
-    
-    .glow-lime {
-      box-shadow: 0 0 25px -4px rgba(182, 255, 59, 0.25);
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    .gradient-brand {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
     }
-    .glow-card {
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+    .gradient-hero {
+      background: linear-gradient(135deg, #EEF2FF 0%, #FAF5FF 50%, #FDF2F8 100%);
     }
-    .grid-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
+    .gradient-badge {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
     }
   </style>
 </head>
-<body class="bg-obsidian-950 text-slate-100 font-sans min-h-full flex flex-col antialiased selection:bg-lime-400 selection:text-obsidian-950 relative overflow-x-hidden">
+<body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-full flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
-  {# Ambient Lighting Background #}
-  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-lime-400/10 via-indigo-600/5 to-transparent blur-[120px] opacity-70"></div>
-    <div class="absolute top-1/3 -right-[200px] w-[500px] h-[500px] bg-cyan-500/5 blur-[140px]"></div>
-    <div class="absolute inset-0 grid-pattern opacity-40"></div>
+  {# Top Announcement Strip #}
+  <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-[12px] font-semibold tracking-wide py-1.5 px-4 text-center">
+    <div class="max-w-6xl mx-auto flex items-center justify-center gap-2">
+      <span class="inline-block animate-bounce">⚡</span>
+      <span>DOGFOOD 2026: Official Hackathon Judging & Evaluation Platform</span>
+      <span class="hidden sm:inline-block opacity-80">• Verified Normalization Engine Active</span>
+    </div>
   </div>
 
-  {# Sticky Navbar #}
-  <header class="sticky top-0 z-50 bg-obsidian-950/80 backdrop-blur-xl border-b border-white/[0.08]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  {# Sticky Top Navbar #}
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
 
       {# Brand / Logo #}
-      <a href="/" class="flex items-center gap-3 group">
-        <div class="relative">
-          <div class="absolute -inset-1 bg-lime-400/30 rounded-lg blur-sm group-hover:bg-lime-400/50 transition-all duration-300"></div>
-          <div class="relative w-8 h-8 rounded-lg bg-gradient-to-br from-obsidian-800 to-obsidian-900 border border-white/20 flex items-center justify-center font-bold text-sm tracking-tight text-lime-400 shadow-inner group-hover:border-lime-400/60 transition-colors">
-            D
-          </div>
+      <a href="/" class="flex items-center gap-3 shrink-0 group">
+        <div class="w-10 h-10 rounded-xl gradient-brand flex items-center justify-center text-white font-extrabold text-lg shadow-md group-hover:scale-105 group-hover:shadow-indigo-500/25 transition-all">
+          D
         </div>
-        <div class="flex items-baseline gap-2">
-          <span class="font-extrabold text-base tracking-tight text-white group-hover:text-lime-400 transition-colors">
-            DOGFOOD
-          </span>
-          <span class="hidden sm:inline-block text-[10px] font-mono font-semibold uppercase tracking-widest text-slate-400 border border-white/10 px-1.5 py-0.2 rounded bg-white/[0.02]">
-            JudgeEngine
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="font-extrabold text-lg tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+              DOGFOOD
+            </span>
+            <span class="bg-indigo-50 text-indigo-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-indigo-200/60 uppercase tracking-wider">
+              Hack
+            </span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-semibold tracking-tight -mt-0.5">
+            Judging Platform
           </span>
         </div>
       </a>
 
-      {# Nav Links #}
-      <nav class="flex items-center gap-1 sm:gap-1.5 text-sm overflow-x-auto py-1">
-        <a href="/projects" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/projects' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-          Gallery
+      {# Main Nav Links with Unstop Pill Styling #}
+      <nav class="flex items-center gap-1.5 sm:gap-2 text-sm overflow-x-auto py-1">
+        <a href="/projects" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20' if current_path == '/projects' else 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100' }}">
+          <span>🏆</span>
+          <span>Gallery</span>
         </a>
 
-        <a href="/projects/new" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/projects/new' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-          Submit Project
+        <a href="/projects/new" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20' if current_path == '/projects/new' else 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100' }}">
+          <span>✍️</span>
+          <span>Submit</span>
         </a>
 
-        <a href="/judge/dashboard" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/judge/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-          Scoring Queue
+        <a href="/judge/dashboard" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20' if current_path == '/judge/dashboard' else 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100' }}">
+          <span>⚖️</span>
+          <span>Judging</span>
         </a>
 
-        <a href="/organizer/dashboard" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 {{ 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' if current_path == '/organizer/dashboard' else 'text-slate-400 hover:text-white hover:bg-white/[0.04]' }}">
-          Organizer
+        <a href="/organizer/dashboard" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20' if current_path == '/organizer/dashboard' else 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100' }}">
+          <span>📊</span>
+          <span>Organizer</span>
         </a>
 
-        <a href="/api/v1/results/export" class="hidden lg:inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/[0.04] transition-colors">
-          Export CSV
+        <a href="/api/v1/results/export" class="hidden md:inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap text-slate-600 hover:text-indigo-600 hover:bg-slate-100 transition-colors">
+          <span>📥</span>
+          <span>CSV Export</span>
         </a>
 
         {# User / Role Status Pill #}
-        <div class="flex items-center gap-2 border-l border-white/10 pl-2.5 sm:pl-3 ml-1 shrink-0">
+        <div class="flex items-center gap-2 border-l border-slate-200 pl-3 ml-1 shrink-0">
           {% if not current_user %}
-            <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 border border-white/10 shadow-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+            <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+              <span class="w-2 h-2 rounded-full bg-slate-400"></span>
               Visitor
             </span>
           {% else %}
-            <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium bg-lime-400/10 text-lime-300 border border-lime-400/20 shadow-sm">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-lime-400"></span>
-              </span>
+            <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               {% if current_user.username %}
-                <span class="font-semibold text-white mr-0.5 hidden sm:inline">{{ current_user.username }}</span>
+                <span>{{ current_user.username }}</span>
               {% endif %}
-              <span class="capitalize text-lime-400 font-mono text-[11px]">{{ current_user.role }}</span>
+              <span class="uppercase tracking-wide text-[10px] bg-indigo-600 text-white px-1.5 py-0.5 rounded-full">
+                {{ current_user.role }}
+              </span>
             </span>
           {% endif %}
         </div>
@@ -143,20 +143,33 @@
     </div>
   </header>
 
-  {# Main Content #}
-  <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 flex-1">
+  {# Main Page Container #}
+  <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 flex-1">
     {% block content %}{% endblock %}
   </main>
 
-  {# Majestic Footer #}
-  <footer class="border-t border-white/[0.06] bg-obsidian-950/60 backdrop-blur-sm mt-auto py-6">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-lime-400"></span>
-        <span>DOGFOOD PLATFORM • SYSTEM SECURE & NORMALIZED</span>
+  {# Unstop-style Expressive Footer #}
+  <footer class="border-t border-slate-200 bg-white mt-auto py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg gradient-brand flex items-center justify-center text-white font-bold text-xs shadow-sm">
+          D
+        </div>
+        <div>
+          <span class="font-bold text-slate-800 text-sm">DOGFOOD</span>
+          <span class="text-slate-400 ml-1">• Empowering fair and transparent hackathon evaluations</span>
+        </div>
       </div>
-      <div class="text-slate-500">
-        TIER T1 & T2 VERIFIED • COMPLIANT HACKATHON INFRASTRUCTURE
+
+      <div class="flex items-center gap-4 font-medium text-slate-600">
+        <a href="/projects" class="hover:text-indigo-600 transition-colors">Showcase</a>
+        <a href="/projects/new" class="hover:text-indigo-600 transition-colors">Submit Project</a>
+        <a href="/judge/dashboard" class="hover:text-indigo-600 transition-colors">Judge Queue</a>
+        <a href="/organizer/dashboard" class="hover:text-indigo-600 transition-colors">Organizer Ops</a>
+      </div>
+
+      <div class="font-mono text-slate-400">
+        TIER T1 & T2 VERIFIED • 2026
       </div>
     </div>
   </footer>

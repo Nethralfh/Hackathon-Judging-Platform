@@ -2,35 +2,52 @@
 {% block content %}
 {# views/projects/new.html — Project Submission Form #}
 
-<div class="max-w-xl mx-auto mt-4 sm:mt-6">
+<div class="max-w-2xl mx-auto mt-4 sm:mt-6">
   
   {# Breadcrumb & Page Header #}
   <div class="mb-6">
-    <a href="/projects" class="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-400 hover:text-lime-400 transition-colors mb-4 group">
-      <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <a href="/projects" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-200/60 px-3.5 py-1.5 rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-xs mb-4 group">
+      <svg class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
-      RETURN TO GALLERY
+      <span>Back to Gallery</span>
     </a>
-    <h1 class="text-3xl font-extrabold text-white tracking-tight">Submit Your Project</h1>
-    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-      Register your hackathon project for evaluation. Ensure your repository is publicly accessible for the judges.
+    <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Submit Your Project</h1>
+    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+      Fill out your hackathon submission details below. Please verify that your repository URL is public so that assigned judges can evaluate your code.
     </p>
   </div>
 
-  {# Feedback Banners #}
-  <div id="msg-error" class="hidden mb-6 border-l-4 border-red-500 bg-red-950/40 text-red-200 p-4 rounded-r-xl text-sm font-medium border border-white/5 shadow-lg"></div>
-  <div id="msg-success" class="hidden mb-6 border-l-4 border-lime-400 bg-lime-950/40 text-lime-200 p-4 rounded-r-xl text-sm font-medium border border-white/5 shadow-lg"></div>
+  {# Feature Checklist Badges #}
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-xs flex items-center gap-2.5">
+      <span class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm shrink-0">✓</span>
+      <span class="text-xs font-semibold text-slate-700">Instant Registry</span>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-xs flex items-center gap-2.5">
+      <span class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0">⚖️</span>
+      <span class="text-xs font-semibold text-slate-700">Fair Normalization</span>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-xs flex items-center gap-2.5">
+      <span class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-sm shrink-0">🔒</span>
+      <span class="text-xs font-semibold text-slate-700">Isolated Judging</span>
+    </div>
+  </div>
 
-  {# Form Glass Card #}
-  <div class="relative bg-obsidian-900/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-2xl overflow-hidden">
-    {# Subtle top edge glow #}
-    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-lime-400/40 to-transparent"></div>
+  {# Feedback Banners #}
+  <div id="msg-error" class="hidden mb-6 border-l-4 border-red-500 bg-red-50 text-red-800 p-4 rounded-r-2xl text-sm font-semibold border border-red-200 shadow-sm"></div>
+  <div id="msg-success" class="hidden mb-6 border-l-4 border-emerald-500 bg-emerald-50 text-emerald-800 p-4 rounded-r-2xl text-sm font-semibold border border-emerald-200 shadow-sm"></div>
+
+  {# Form Card #}
+  <div class="relative bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm overflow-hidden">
+    {# Top gradient bar #}
+    <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
 
     <form id="submit-form" class="space-y-6">
       <div>
-        <label for="title" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
-          Project Title <span class="text-lime-400">*</span>
+        <label for="title" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>💡 Project Title</span>
+          <span class="text-rose-500">*</span>
         </label>
         <input
           type="text"
@@ -38,14 +55,16 @@
           name="title"
           required
           maxlength="120"
-          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
-          placeholder="e.g. NeuralPulse AI"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-all font-medium"
+          placeholder="e.g. Hollow Signal AI"
         />
+        <p class="text-[11px] text-slate-400 mt-1">Make your project title concise and memorable.</p>
       </div>
 
       <div>
-        <label for="summary" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
-          One-line Summary <span class="text-lime-400">*</span>
+        <label for="summary" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>📝 One-line Pitch / Summary</span>
+          <span class="text-rose-500">*</span>
         </label>
         <input
           type="text"
@@ -53,35 +72,39 @@
           name="summary"
           required
           maxlength="200"
-          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-all font-medium"
           placeholder="What does your project solve in one crisp sentence?"
         />
+        <p class="text-[11px] text-slate-400 mt-1">Explain the core value proposition in under 200 characters.</p>
       </div>
 
       <div>
-        <label for="repo_url" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
-          Repository URL <span class="text-lime-400">*</span>
+        <label for="repo_url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>💻 Source Code Repository URL</span>
+          <span class="text-rose-500">*</span>
         </label>
         <input
           type="url"
           id="repo_url"
           name="repo_url"
           required
-          class="w-full rounded-xl border border-white/10 bg-obsidian-950/90 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-lime-400 focus:ring-1 focus:ring-lime-400/30 focus:outline-none transition-all shadow-inner"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-all font-mono text-xs"
           placeholder="https://github.com/organization/project"
         />
+        <p class="text-[11px] text-slate-400 mt-1">Direct link to your GitHub, GitLab, or Bitbucket repository.</p>
       </div>
 
-      <div class="pt-2 flex items-center justify-between border-t border-white/[0.06]">
-        <a href="/projects" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+      <div class="pt-4 flex items-center justify-between border-t border-slate-100">
+        <a href="/projects" class="text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
           Cancel
         </a>
         <button
           type="submit"
           id="submit-btn"
-          class="inline-flex items-center justify-center font-bold text-sm bg-lime-400 text-obsidian-950 px-6 py-2.5 rounded-xl hover:bg-lime-300 transition-all duration-200 shadow-[0_0_20px_rgba(182,255,59,0.25)] hover:shadow-[0_0_25px_rgba(182,255,59,0.4)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          class="inline-flex items-center justify-center gap-2 font-bold text-sm gradient-brand text-white px-7 py-3 rounded-2xl shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          Submit Project
+          <span>🚀</span>
+          <span>Submit Project</span>
         </button>
       </div>
     </form>
@@ -100,7 +123,7 @@
       errBox.classList.add('hidden');
       okBox.classList.add('hidden');
       btn.disabled = true;
-      btn.textContent = 'Submitting...';
+      btn.innerHTML = '<span>⏳</span><span>Submitting...</span>';
 
       const payload = {
         title:    document.getElementById('title').value.trim(),
@@ -116,7 +139,7 @@
         });
 
         if (res.ok) {
-          okBox.textContent = 'Project submitted successfully!';
+          okBox.innerHTML = '<div class="flex items-center gap-2"><span>🎉</span><span>Project submitted successfully! It has been entered into the judging pool.</span></div>';
           okBox.classList.remove('hidden');
           form.reset();
         } else {
@@ -125,7 +148,7 @@
             const body = await res.json();
             if (body && body.detail) {
               if (body.detail === 'Submissions are closed for this event') {
-                msg = 'Submissions are closed.';
+                msg = 'Submissions are closed for this event.';
               } else if (body.detail === 'Not authenticated') {
                 msg = 'You are not authorized to submit a project. Make sure you are logged in as a participant.';
               } else {
@@ -133,15 +156,15 @@
               }
             }
           } catch (_) {}
-          errBox.textContent = msg;
+          errBox.innerHTML = '<div class="flex items-center gap-2"><span>⚠️</span><span>' + msg + '</span></div>';
           errBox.classList.remove('hidden');
         }
       } catch (err) {
-        errBox.textContent = 'Network error — could not reach the server.';
+        errBox.innerHTML = '<div class="flex items-center gap-2"><span>⚠️</span><span>Network error — could not reach the server.</span></div>';
         errBox.classList.remove('hidden');
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Submit Project';
+        btn.innerHTML = '<span>🚀</span><span>Submit Project</span>';
       }
     });
   })();
