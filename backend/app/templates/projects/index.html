@@ -1,13 +1,15 @@
-<%# views/projects/index.ejs — Public Gallery %>
+{% extends "partials/layout.html" %}
+{% block content %}
+{# views/projects/index.html — Public Gallery #}
 
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-xl font-semibold text-gray-900">Project Gallery</h1>
-  <% if (currentUser && currentUser.role === 'participant') { %>
+  {% if current_user and current_user.role == 'participant' %}
     <a href="/projects/new" class="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-sm hover:bg-blue-700">Submit Project</a>
-  <% } %>
+  {% endif %}
 </div>
 
-<%# Filters %>
+{# Filters #}
 <div class="flex items-center gap-3 mb-4">
   <input
     id="search-input"
@@ -20,14 +22,14 @@
     class="border border-gray-200 rounded-sm text-sm px-2.5 py-1.5 focus:outline-none focus:border-gray-400 bg-white"
   >
     <option value="">All tracks</option>
-    <% tracks.forEach(function(t) { %>
-      <option value="<%= t %>"><%= t %></option>
-    <% }) %>
+    {% for t in tracks %}
+      <option value="{{ t }}">{{ t }}</option>
+    {% endfor %}
   </select>
   <span id="result-count" class="text-xs text-gray-400 ml-auto"></span>
 </div>
 
-<%# Projects table %>
+{# Projects table #}
 <div class="border border-gray-200 rounded-sm overflow-hidden">
   <table class="w-full text-sm" id="projects-table">
     <thead class="bg-gray-50 border-b border-gray-200">
@@ -38,26 +40,26 @@
       </tr>
     </thead>
     <tbody id="projects-body">
-      <% if (projects.length === 0) { %>
+      {% if projects | length == 0 %}
         <tr>
           <td colspan="3" class="px-4 py-6 text-gray-400 text-center">No projects submitted yet.</td>
         </tr>
-      <% } %>
-      <% projects.forEach(function(p) { %>
+      {% endif %}
+      {% for p in projects %}
         <tr
           class="border-t border-gray-100 hover:bg-gray-50 project-row"
-          data-title="<%= p.title.toLowerCase() %>"
-          data-track="<%= p.track %>"
+          data-title="{{ p.title | lower }}"
+          data-track="{{ p.track }}"
         >
           <td class="px-4 py-2.5 font-medium">
-            <a href="/projects/<%= p.id %>" class="text-blue-600 hover:underline"><%= p.title %></a>
+            <a href="/projects/{{ p.id }}" class="text-blue-600 hover:underline">{{ p.title }}</a>
           </td>
-          <td class="px-4 py-2.5 text-gray-600"><%= p.summary %></td>
+          <td class="px-4 py-2.5 text-gray-600">{{ p.description }}</td>
           <td class="px-4 py-2.5">
-            <span class="text-xs border border-gray-200 rounded-sm px-1.5 py-0.5 text-gray-600"><%= p.track %></span>
+            <span class="text-xs border border-gray-200 rounded-sm px-1.5 py-0.5 text-gray-600">{{ p.track }}</span>
           </td>
         </tr>
-      <% }) %>
+      {% endfor %}
     </tbody>
   </table>
 </div>
@@ -90,3 +92,4 @@
     applyFilters();
   })();
 </script>
+{% endblock %}

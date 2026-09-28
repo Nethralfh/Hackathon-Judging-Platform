@@ -1,22 +1,24 @@
-<%# views/organizer/dashboard.ejs — Organizer Progress View %>
+{% extends "partials/layout.html" %}
+{% block content %}
+{# views/organizer/dashboard.html — Organizer Progress View #}
 
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-xl font-semibold text-gray-900">Judging Progress</h1>
   <a
-    href="/api/export/csv"
+    href="/api/v1/results/export"
     class="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-sm hover:bg-blue-700"
   >Export CSV</a>
 </div>
 
-<%# Summary line %>
+{# Summary line #}
 <p class="text-sm text-gray-600 mb-6">
-  <strong class="text-gray-900"><%= stats.scoredProjects %></strong> of
-  <strong class="text-gray-900"><%= stats.totalProjects %></strong> projects have at least one score.
+  <strong class="text-gray-900">{{ stats.scored_projects }}</strong> of
+  <strong class="text-gray-900">{{ stats.total_projects }}</strong> projects have at least one score.
   <span class="text-gray-400 ml-2">|</span>
-  <span class="ml-2"><%= stats.totalScores %> total scores submitted across <%= stats.totalProjects %> projects.</span>
+  <span class="ml-2">{{ stats.total_scores }} total scores submitted across {{ stats.total_projects }} projects.</span>
 </p>
 
-<%# ===== Projects table ===== %>
+{# ===== Projects table ===== #}
 <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Projects</h2>
 <div class="border border-gray-200 rounded-sm overflow-hidden mb-8">
   <table class="w-full text-sm">
@@ -29,40 +31,40 @@
       </tr>
     </thead>
     <tbody>
-      <% if (projectRows.length === 0) { %>
+      {% if project_rows | length == 0 %}
         <tr>
           <td colspan="4" class="px-4 py-5 text-gray-400 text-center">No projects yet.</td>
         </tr>
-      <% } %>
-      <% projectRows.forEach(function (row) { %>
+      {% endif %}
+      {% for row in project_rows %}
         <tr class="border-t border-gray-100 hover:bg-gray-50">
           <td class="px-4 py-2.5 font-medium">
-            <a href="/projects/<%= row.id %>" class="text-blue-600 hover:underline"><%= row.title %></a>
+            <a href="/projects/{{ row.id }}" class="text-blue-600 hover:underline">{{ row.title }}</a>
           </td>
           <td class="px-4 py-2.5 text-gray-500 text-xs">
-            <span class="border border-gray-200 rounded-sm px-1.5 py-0.5"><%= row.track %></span>
+            <span class="border border-gray-200 rounded-sm px-1.5 py-0.5">{{ row.track }}</span>
           </td>
           <td class="px-4 py-2.5 text-right text-gray-700">
-            <% if (row.scoreCount === 0) { %>
+            {% if row.score_count == 0 %}
               <span class="text-gray-400">0</span>
-            <% } else { %>
-              <%= row.scoreCount %>
-            <% } %>
+            {% else %}
+              {{ row.score_count }}
+            {% endif %}
           </td>
           <td class="px-4 py-2.5 text-right">
-            <% if (row.avgScore === null) { %>
+            {% if row.avg_score is none %}
               <span class="text-gray-400">—</span>
-            <% } else { %>
-              <span class="font-mono text-gray-800"><%= row.avgScore.toFixed(2) %></span>
-            <% } %>
+            {% else %}
+              <span class="font-mono text-gray-800">{{ "%.2f"|format(row.avg_score) }}</span>
+            {% endif %}
           </td>
         </tr>
-      <% }) %>
+      {% endfor %}
     </tbody>
   </table>
 </div>
 
-<%# ===== Judges table ===== %>
+{# ===== Judges table ===== #}
 <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Judges</h2>
 <div class="border border-gray-200 rounded-sm overflow-hidden">
   <table class="w-full text-sm">
@@ -74,22 +76,23 @@
       </tr>
     </thead>
     <tbody>
-      <% if (judgeRows.length === 0) { %>
+      {% if judge_rows | length == 0 %}
         <tr>
           <td colspan="3" class="px-4 py-5 text-gray-400 text-center">No judges found.</td>
         </tr>
-      <% } %>
-      <% judgeRows.forEach(function (j) { %>
+      {% endif %}
+      {% for j in judge_rows %}
         <tr class="border-t border-gray-100 hover:bg-gray-50">
-          <td class="px-4 py-2.5 font-medium text-gray-900"><%= j.name %></td>
+          <td class="px-4 py-2.5 font-medium text-gray-900">{{ j.name }}</td>
           <td class="px-4 py-2.5 text-gray-500 text-xs">
-            <% (j.tracks || []).forEach(function (t) { %>
-              <span class="inline-block border border-gray-200 rounded-sm px-1.5 py-0.5 mr-1"><%= t %></span>
-            <% }) %>
+            {% for t in j.tracks %}
+              <span class="inline-block border border-gray-200 rounded-sm px-1.5 py-0.5 mr-1">{{ t }}</span>
+            {% endfor %}
           </td>
-          <td class="px-4 py-2.5 text-right text-gray-700"><%= j.reviewCount %></td>
+          <td class="px-4 py-2.5 text-right text-gray-700">{{ j.review_count }}</td>
         </tr>
-      <% }) %>
+      {% endfor %}
     </tbody>
   </table>
 </div>
+{% endblock %}

@@ -1,10 +1,12 @@
-<%# views/projects/new.ejs — Project Submission Form %>
+{% extends "partials/layout.html" %}
+{% block content %}
+{# views/projects/new.html — Project Submission Form #}
 
 <div class="max-w-lg">
   <h1 class="text-xl font-semibold text-gray-900 mb-1">Submit a Project</h1>
   <p class="text-sm text-gray-500 mb-6">Fill out the form below. All fields are required.</p>
 
-  <%# Error / success banners (populated by JS) %>
+  {# Error / success banners (populated by JS) #}
   <div id="msg-error" class="hidden mb-4 border border-red-300 bg-red-50 text-red-700 rounded-sm px-3 py-2 text-sm"></div>
   <div id="msg-success" class="hidden mb-4 border border-green-300 bg-green-50 text-green-700 rounded-sm px-3 py-2 text-sm"></div>
 
@@ -94,14 +96,13 @@
           let msg = 'An error occurred. Please try again.';
           try {
             const body = await res.json();
-            if (body && body.error) {
-              // Surface backend error in a readable way
-              if (body.error === 'submissions are closed') {
+            if (body && body.detail) {
+              if (body.detail === 'Submissions are closed for this event') {
                 msg = 'Submissions are closed.';
-              } else if (body.error === 'unauthorized') {
+              } else if (body.detail === 'Not authenticated') {
                 msg = 'You are not authorized to submit a project. Make sure you are logged in as a participant.';
               } else {
-                msg = body.error;
+                msg = body.detail;
               }
             }
           } catch (_) {}
@@ -118,3 +119,4 @@
     });
   })();
 </script>
+{% endblock %}

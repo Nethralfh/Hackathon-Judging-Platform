@@ -6,10 +6,10 @@ claimed = ["T1", "T2"]
 pitch = "Clean architecture."
 
 [auth]
-organizer   = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6Im9yZ2FuaXplciJ9.iex4_j7IattjbM9iRUGzMxOGk0JMr-2stR6cTcjRkf4"
-judge_a     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6ImpkZ18wMSJ9.9xO69wh7B7Cfj3d8RE3agRGkUy7OL25FAMoHXQWD4KY"
-judge_b     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6ImpkZ18wMiJ9.xi3NBgYP3gLqKCXrxYbThgfWigbDVEk_DQt7Lxink8A"
-participant = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExMTU2MjUsInN1YiI6InByaXlhMTEifQ.uNEtD1uwJM9bF0ANSDcqkkSmOC7Go6x9RmMbRHmAOos"
+organizer   = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExODI2NjksInN1YiI6Im9yZ2FuaXplciJ9.xG9wqqsu-K-IWF-jWxsFTwRo6-SiKDuduVhw580EOtM"
+judge_a     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExODI2NjksInN1YiI6ImpkZ18wMSJ9.v_UcRmRqz_Atky-K1Eqh8bKIsdD4sF1mCFIt_2VajJY"
+judge_b     = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExODI2NjksInN1YiI6ImpkZ18wMiJ9.sruXzfv8XtDRm3dR-X1G5kuK3KKQRO3eCiW3fqbEAT4"
+participant = "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTExODI2NjksInN1YiI6InByaXlhMTEifQ.ujxQZRfxMQNvUicpHEet5C-H8C9SXKFM-LbWRRqZ14M"
 
 [routes]
 gallery      = "/api/v1/public/projects"

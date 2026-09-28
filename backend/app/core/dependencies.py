@@ -37,7 +37,8 @@ def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_
     return user
 
 def require_role(role: RoleEnum):
-    def role_checker(current_user: User = Depends(get_current_user)):
+    """Returns a FastAPI dependency callable that enforces a specific role."""
+    def role_checker(current_user: User = Depends(get_current_user)) -> User:
         if current_user.role != role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -46,12 +47,30 @@ def require_role(role: RoleEnum):
         return current_user
     return role_checker
 
-def require_organizer(current_user: User = Depends(get_current_user)):
-    return require_role(RoleEnum.ORGANIZER)(current_user)
+# These are direct FastAPI dependency callables — FastAPI resolves get_current_user
+# through its DI chain (OAuth2PasswordBearer → JWT decode → DB lookup) and then
+# this function checks the role and raises 403 if wrong, or returns the user.
+def require_organizer(current_user: User = Depends(get_current_user)) -> User:
+    if current_user.role != RoleEnum.ORGANIZER:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not enough permissions"
+        )
+    return current_user
 
-def require_judge(current_user: User = Depends(get_current_user)):
-    return require_role(RoleEnum.JUDGE)(current_user)
+def require_judge(current_user: User = Depends(get_current_user)) -> User:
+    if current_user.role != RoleEnum.JUDGE:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not enough permissions"
+        )
+    return current_user
 
-def require_participant(current_user: User = Depends(get_current_user)):
-    return require_role(RoleEnum.PARTICIPANT)(current_user)
+def require_participant(current_user: User = Depends(get_current_user)) -> User:
+    if current_user.role != RoleEnum.PARTICIPANT:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not enough permissions"
+        )
+    return current_user
 
